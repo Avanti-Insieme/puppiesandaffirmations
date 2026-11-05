@@ -1,0 +1,51 @@
+name: Generate affirmation batch
+
+on:
+  schedule:
+    # 11:00 UTC is about 8 a.m. Halifax (AST) or 7 a.m. (ADT).
+    - cron: "0 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  batch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Generate batch
+        id: generate
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          SUMMARY_PATH: ${{ runner.temp }}/batch-summary.txt
+        run: node scripts/generate-batch.mjs
+
+      - name: Open pull request
+        if: steps.generate.outputs.changed == 'true'
+        id: pr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: batch/auto
+          title: "New affirmation batch for review"
+          commit-message: "Add affirmation batch"
+          body: "Merge this pull request to approve the batch. Netlify publishes it after the merge."
+
+      - name: Email draft
+        if: steps.generate.outputs.changed == 'true'
+        env:
+          PR_URL: ${{ steps.pr.outputs.pull-request-url }}
+          SUMMARY_PATH: ${{ runner.temp }}/batch-summary.txt
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: node scripts/send-draft.mjs

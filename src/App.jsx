@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import queue from './content/queue.json';
 import { DEFAULT_AFFIRMATION } from './data.js';
+import { currentPost } from './todaysPost.js';
 import { applyTheme, readSavedTheme, saveTheme } from './theme.js';
 import Nav from './components/Nav.jsx';
 import Hero from './components/Hero.jsx';
@@ -12,12 +14,21 @@ import AdminPanel from './components/AdminPanel.jsx';
 export default function App() {
   const wrapperRef = useRef(null);
   const [themeKey, setThemeKey] = useState(readSavedTheme);
-  const [affirmation, setAffirmation] = useState(DEFAULT_AFFIRMATION);
-  const [heroSrc, setHeroSrc] = useState('');
+
+  // Admin edits override today's queued post until the page is reloaded.
+  const [affirmationOverride, setAffirmationOverride] = useState(null);
+  const [heroOverride, setHeroOverride] = useState(null);
+
   const [subscribed, setSubscribed] = useState(false);
   const [newsletterOpen, setNewsletterOpen] = useState(false);
   const [adminDialogOpen, setAdminDialogOpen] = useState(false);
   const [adminPanelOpen, setAdminPanelOpen] = useState(false);
+
+  // Today's post comes from the approved queue (src/content/queue.json).
+  const todays = currentPost(queue);
+  const affirmation = affirmationOverride ?? todays?.text ?? DEFAULT_AFFIRMATION;
+  const heroSrc = heroOverride ?? todays?.photo?.src ?? '';
+  const credit = heroOverride === null ? (todays?.photo ?? null) : null;
 
   useEffect(() => {
     applyTheme(themeKey, wrapperRef.current);
@@ -49,7 +60,12 @@ export default function App() {
       />
 
       <main className="pa-wrap pa-main">
-        <Hero affirmation={affirmation} heroSrc={heroSrc} onHeroChange={setHeroSrc} />
+        <Hero
+          affirmation={affirmation}
+          heroSrc={heroSrc}
+          credit={credit}
+          onHeroChange={setHeroOverride}
+        />
 
         <section className="pa-ad-row">
           <AdSlot label="728 × 90 ad slot" wide />
@@ -84,8 +100,8 @@ export default function App() {
       {adminPanelOpen && (
         <AdminPanel
           affirmation={affirmation}
-          onSaveAffirmation={setAffirmation}
-          onApplyImage={setHeroSrc}
+          onSaveAffirmation={setAffirmationOverride}
+          onApplyImage={setHeroOverride}
           onClose={() => setAdminPanelOpen(false)}
           onLogout={handleLogout}
         />

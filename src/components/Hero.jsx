@@ -1,6 +1,6 @@
 import ImageSlot from './ImageSlot.jsx';
 
-export default function Hero({ affirmation, heroSrc, onHeroChange }) {
+export default function Hero({ affirmation, heroSrc, credit, onHeroChange }) {
   return (
     <>
       <section className="pa-hero-text">
@@ -11,6 +11,24 @@ export default function Hero({ affirmation, heroSrc, onHeroChange }) {
       <section className="halftone pa-hero-frame">
         <ImageSlot src={heroSrc} onChange={onHeroChange} />
       </section>
+
+      {credit && <PhotoCredit photo={credit} />}
     </>
+  );
+}
+
+// Unsplash asks for a credit that links to the photographer and the photo.
+function PhotoCredit({ photo }) {
+  return (
+    <p className="pa-credit">
+      Photo by{' '}
+      <a href={photo.photographerUrl} target="_blank" rel="noopener noreferrer">
+        {photo.photographer}
+      </a>{' '}
+      on{' '}
+      <a href="https://unsplash.com/?utm_source=puppies_affirmations&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        Unsplash
+      </a>
+    </p>
   );
 }
