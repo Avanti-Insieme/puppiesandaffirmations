@@ -1,0 +1,283 @@
+/* Page-specific styles for Puppies and Affirmations. The design tokens and
+   components come from broadsheet.css, which loads first. */
+
+/* ── Page shell ───────────────────────────────────────────────── */
+html, body { margin: 0; background: var(--color-bg); }
+a { color: var(--color-accent); }
+a:hover { color: var(--color-accent-700); }
+
+.pa-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  transition: background 0.4s ease;
+}
+.pa-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 64px);
+  width: 100%;
+}
+.pa-main { flex: 1; }
+
+/* ── Navigation ───────────────────────────────────────────────── */
+.pa-nav { position: relative; z-index: 20; flex-wrap: wrap; }
+.pa-brand { display: flex; align-items: center; gap: 8px; }
+.pa-brand .ph-paw-print { font-size: 22px; color: var(--color-accent); }
+.pa-nav-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.pa-popover-wrap { position: relative; }
+.pa-popover { position: absolute; top: calc(100% + 8px); right: 0; z-index: 30; }
+
+/* Calendar */
+.pa-calendar { width: 280px; gap: var(--space-2); }
+.pa-cal-head { display: flex; align-items: center; justify-content: space-between; }
+.pa-cal-head .ph-duotone { font-size: 18px; color: var(--color-accent); }
+.pa-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
+.pa-weekday {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  padding: 4px 0;
+}
+.pa-cal-day {
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.pa-cal-day:hover { background: color-mix(in srgb, var(--color-accent) 12%, transparent); }
+.pa-cal-day.is-selected {
+  background: var(--color-accent-100);
+  color: var(--color-accent-800);
+}
+.pa-cal-day.is-today {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-weight: 600;
+}
+.pa-cal-note {
+  font-size: 12.5px;
+  font-style: italic;
+  margin: var(--space-2) 0 0;
+  color: color-mix(in srgb, var(--color-text) 78%, transparent);
+}
+
+/* Theme picker */
+.pa-theme-menu { width: 200px; gap: var(--space-2); }
+.pa-menu-title { font-size: 14px; }
+.pa-theme-opt {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+.pa-theme-opt:hover { background: color-mix(in srgb, var(--color-text) 6%, transparent); }
+.pa-theme-opt.is-active {
+  background: color-mix(in srgb, var(--color-text) 6%, transparent);
+  border-color: var(--color-divider);
+}
+.pa-swatch {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-text) 15%, transparent);
+}
+.pa-check { font-size: 14px; margin-left: auto; }
+
+/* ── Hero ─────────────────────────────────────────────────────── */
+.pa-hero-text {
+  padding: calc(2.5 * 28px) 0 calc(1.5 * 28px);
+  text-align: center;
+}
+.pa-kicker {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-700);
+  margin-bottom: var(--space-3);
+}
+.pa-headline {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: clamp(30px, 4.5vw, 52px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+  margin: 0 auto;
+}
+.pa-hero-frame {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.pa-hero-slot {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  cursor: pointer;
+}
+.pa-hero-slot img { width: 100%; height: 100%; object-fit: cover; }
+.pa-hero-slot.is-dragging { outline: 2px dashed var(--color-accent); outline-offset: -8px; }
+.pa-hero-placeholder {
+  margin: 0;
+  padding: var(--space-4);
+  text-align: center;
+  font-size: 14px;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+.pa-hero-placeholder .ph-duotone {
+  display: block;
+  font-size: 32px;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
+/* ── Ads and intro ────────────────────────────────────────────── */
+.pa-ad-row {
+  padding: calc(2 * 28px) 0 var(--space-4);
+  display: flex;
+  justify-content: center;
+}
+.pa-ad {
+  width: 100%;
+  max-width: 728px;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+}
+.pa-ad-size { margin: 0; font-size: 12px; opacity: 0.55; }
+
+.pa-intro {
+  padding: calc(1.5 * 28px) 0 calc(2.5 * 28px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+}
+.pa-kicker-sm {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+  margin: 0 0 var(--space-2);
+}
+.pa-intro-text {
+  max-width: 58ch;
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 28px;
+  color: color-mix(in srgb, var(--color-text) 82%, transparent);
+}
+
+/* ── Footer ───────────────────────────────────────────────────── */
+.pa-footer { padding: calc(1.5 * 28px) 0 calc(2 * 28px); }
+.pa-footer-signup { padding-bottom: calc(1.5 * 28px); }
+.pa-footer-title {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 22px;
+  margin: 0 0 var(--space-1);
+}
+.pa-footer-lede {
+  max-width: 48ch;
+  margin: var(--space-1) 0 0;
+  font-size: 14.5px;
+  color: color-mix(in srgb, var(--color-text) 78%, transparent);
+}
+.pa-form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  max-width: 420px;
+  margin-top: var(--space-3);
+}
+.pa-form-row .input { flex: 1; min-width: 200px; }
+.pa-subscribed {
+  margin: var(--space-2) 0 0;
+  font-size: 14.5px;
+  color: var(--color-accent-700);
+}
+.pa-subscribed .ph-duotone,
+.pa-inline-check {
+  font-size: 16px;
+  vertical-align: -2px;
+  margin-right: 4px;
+}
+.pa-footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 13px;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* ── Dialogs ──────────────────────────────────────────────────── */
+.dialog-backdrop { z-index: 100; }
+.pa-backdrop-top { align-items: flex-start; padding-top: 5vh; }
+.pa-admin-dialog {
+  width: min(520px, 100%);
+  max-height: 88vh;
+  overflow-y: auto;
+}
+.pa-admin-head { display: flex; align-items: center; justify-content: space-between; }
+.pa-section-kicker {
+  display: block;
+  margin: 0 0 var(--space-2);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+.pa-section-kicker--spaced { margin-top: var(--space-3); }
+.pa-hint {
+  margin: var(--space-1) 0 0;
+  font-size: 12px;
+  opacity: 0.6;
+}
+.pa-hint--spaced { margin-top: var(--space-3); }
+.pa-row { display: flex; gap: var(--space-2); }
+.pa-row .input { flex: 1; }
+.pa-presets { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.pa-preset.is-active {
+  border-color: var(--color-accent);
+  color: var(--color-accent-700);
+}
+.pa-admin-actions { justify-content: space-between; }
+
+/* ── Small screens ────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .pa-intro { grid-template-columns: 1fr; }
+}
