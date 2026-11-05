@@ -11,7 +11,7 @@ const COOLDOWN_DAYS = 90;   // a photo is not reused within this many days
 const TEXT_MEMORY = 90;     // recent affirmations remembered to avoid repeats
 const PAGES_PER_TERM = 3;   // 6 terms x 3 pages = 18 search requests per run
 const SEARCH_TERMS = ['puppy', 'dog', 'golden retriever', 'corgi', 'puppies playing', 'happy dog'];
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
 
 const ROOT = process.cwd();
 const QUEUE_PATH = path.join(ROOT, 'src/content/queue.json');
@@ -54,7 +54,7 @@ Return only a JSON array of ${count} strings.`;
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-goog-api-key': process.env.GEMINI_API_KEY,
+        'x-goog-api-key': process.env.GEMINI_API_KEY.trim(),
       },
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
@@ -177,6 +177,13 @@ function writeSummary(posts, usedFallback) {
 // ── Main ─────────────────────────────────────────────────────────
 
 async function main() {
+  // Fail early with the secret's name, rather than a vague API error.
+  for (const name of ['GEMINI_API_KEY', 'UNSPLASH_ACCESS_KEY']) {
+    if (!process.env[name]?.trim()) {
+      throw new Error(`${name} is missing or empty. Check that the repository secret has exactly this name.`);
+    }
+  }
+
   const today = publishDate();
   const queue = readJson(QUEUE_PATH, { generatedAt: null, posts: [] });
   const history = readJson(HISTORY_PATH, { photos: [], texts: [] });

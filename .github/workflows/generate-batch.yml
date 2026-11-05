@@ -28,6 +28,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
           SUMMARY_PATH: ${{ runner.temp }}/batch-summary.txt
         run: node scripts/generate-batch.mjs
 
