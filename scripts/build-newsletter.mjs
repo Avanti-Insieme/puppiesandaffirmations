@@ -8,7 +8,7 @@ import { halifaxDate } from '../src/todaysPost.js';
 const ROOT = process.cwd();
 const QUEUE_PATH = path.join(ROOT, 'src/content/queue.json');
 const OUT_DIR = path.join(ROOT, 'newsletter');
-const SITE_URL = 'https://puppiesandaffirmations.com';
+const SITE_URL = 'https://puppiesandaffirmations.ca';
 
 const longDate = new Intl.DateTimeFormat('en-CA', {
   timeZone: 'America/Halifax',

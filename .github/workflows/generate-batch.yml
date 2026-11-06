@@ -32,6 +32,10 @@ jobs:
           SUMMARY_PATH: ${{ runner.temp }}/batch-summary.txt
         run: node scripts/generate-batch.mjs
 
+      - name: Build newsletter files
+        if: steps.generate.outputs.changed == 'true'
+        run: node scripts/build-newsletter.mjs
+
       - name: Open pull request
         if: steps.generate.outputs.changed == 'true'
         id: pr
