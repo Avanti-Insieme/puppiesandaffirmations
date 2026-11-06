@@ -73,10 +73,16 @@ export default function App() {
 
         <section className="pa-intro">
           <div>
+            <h4>Acknowledgement</h4>
             <span className="pa-kicker-sm">Why this exists</span>
             <p className="pa-intro-text">
-              One photo, one honest sentence, updated by hand — not a feed, not a scroll. Some days
-              that's all the comfort a browser tab needs to offer.
+              <img src='/public/pupsandaffsv2.png' style={{display: 'inline'}} width={100}/>
+              Some time ago, I gifted a dear friend with a small gift - a simple calendar with handwritten 
+              notes for the month. It was something, that in the moment, was meant to brighten the day. Yet,
+              months later, I heard how it brightened yet another day.
+              So, this year round, I wanted to take it further. I took my tech skills and built a website
+              that would provide daily affirmations and photos.
+              Some days that's all the comfort a browser tab needs to offer.
             </p>
           </div>
           <AdSlot label="300 × 250 ad slot" />
