@@ -12,13 +12,13 @@ permissions:
 
 jobs:
   batch:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
@@ -35,7 +35,7 @@ jobs:
       - name: Open pull request
         if: steps.generate.outputs.changed == 'true'
         id: pr
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: batch/auto
