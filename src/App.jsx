@@ -50,7 +50,7 @@ export default function App() {
             <h4>Acknowledgement</h4>
             <span className="pa-kicker-sm">Why this exists</span>
             <p className="pa-intro-text">
-              <img src='/public/pupsandaffsv2.png' style={{display: 'inline'}} width={100}/>
+              <img src='/pupsandaffsv2.png' style={{display: 'inline'}} width={100}/>
               Some time ago, I gifted a dear friend with a small gift - a simple calendar with handwritten 
               notes for the month. It was something, that in the moment, was meant to brighten the day. Yet,
               months later, I heard how it brightened yet another day.
