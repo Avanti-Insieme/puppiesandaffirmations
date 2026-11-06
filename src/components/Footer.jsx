@@ -1,11 +1,17 @@
 import { useState } from 'react';
+import { isValidEmail, openSignup } from '../subscribe.js';
 
-export default function Footer({ subscribed, onSubscribe }) {
+export default function Footer() {
   const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('idle'); // idle | invalid | sent
 
   function submit() {
-    if (!email.trim()) return;
-    onSubscribe();
+    if (!isValidEmail(email)) {
+      setStatus('invalid');
+      return;
+    }
+    openSignup(email);
+    setStatus('sent');
   }
 
   return (
@@ -14,15 +20,16 @@ export default function Footer({ subscribed, onSubscribe }) {
         <section className="pa-footer-signup">
           <h3 className="pa-footer-title">Get today's affirmation in your inbox</h3>
 
-          {subscribed ? (
+          {status === 'sent' ? (
             <p className="pa-subscribed">
-              <i className="ph-duotone ph-check-circle" />
-              You're on the list — one gentle note each morning.
+              <i className="ph-duotone ph-envelope-simple" />
+              Almost there. Check your inbox and click the confirmation link to finish signing up.
             </p>
           ) : (
             <>
               <p className="pa-footer-lede">
-                One short, kind sentence and a good dog photo — delivered daily, no spam.
+                One short, kind sentence and a good dog photo, delivered daily. No spam, and you can
+                unsubscribe at any time.
               </p>
               <div className="pa-form-row">
                 <input
@@ -31,7 +38,10 @@ export default function Footer({ subscribed, onSubscribe }) {
                   placeholder="you@example.com"
                   aria-label="Email address"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (status === 'invalid') setStatus('idle');
+                  }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') submit();
                   }}
@@ -40,12 +50,18 @@ export default function Footer({ subscribed, onSubscribe }) {
                   Join
                 </button>
               </div>
+              {status === 'invalid' && (
+                <p className="pa-form-error" role="alert">Please enter a valid email address.</p>
+              )}
+              <p className="pa-privacy">
+                We use your email only to send the daily affirmation.
+              </p>
             </>
           )}
         </section>
 
         <div className="pa-footer-meta">
-          <span>Puppies &amp; Affirmations — a small, calm corner of the internet.</span>
+          <span>Puppies &amp; Affirmations: a small, calm corner of the internet.</span>
           <span className="tag tag-outline">Sponsored placements support this site</span>
         </div>
       </div>

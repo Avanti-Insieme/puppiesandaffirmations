@@ -291,3 +291,16 @@ a:hover { color: var(--color-accent-700); }
   color: color-mix(in srgb, var(--color-text) 60%, transparent);
 }
 .pa-credit a { color: inherit; }
+
+/* ── Signup feedback ──────────────────────────────────────────── */
+.pa-form-error {
+  margin: var(--space-1) 0 0;
+  font-size: 13px;
+  color: var(--color-accent-2-700);
+}
+.pa-privacy {
+  margin: var(--space-2) 0 0;
+  font-size: 12px;
+  opacity: 0.6;
+}
+.pa-subscribed .ph-duotone { font-size: 16px; vertical-align: -2px; margin-right: 4px; }
