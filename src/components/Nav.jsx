@@ -1,7 +1,9 @@
 import Calendar from './Calendar.jsx';
 import ThemePicker from './ThemePicker.jsx';
 
-export default function Nav({ affirmation, themeKey, onSelectTheme, onOpenNewsletter, onOpenAdmin }) {
+// The Admin button is hidden for now. See README: the admin panel has no real
+// sign-in, so it stays off until a real login is added.
+export default function Nav({ themeKey, onSelectTheme, onOpenNewsletter }) {
   return (
     <nav className="nav pa-nav">
       <span className="nav-brand pa-brand">
@@ -10,17 +12,12 @@ export default function Nav({ affirmation, themeKey, onSelectTheme, onOpenNewsle
       </span>
 
       <div className="pa-nav-actions">
-        <Calendar affirmation={affirmation} />
+        <Calendar />
         <ThemePicker themeKey={themeKey} onSelect={onSelectTheme} />
 
         <button type="button" className="btn btn-secondary" onClick={onOpenNewsletter}>
           <i className="ph-duotone ph-envelope-simple-open" />
           Newsletter
-        </button>
-
-        <button type="button" className="btn btn-ghost" onClick={onOpenAdmin}>
-          <i className="ph-duotone ph-lock-key" />
-          Admin
         </button>
       </div>
     </nav>

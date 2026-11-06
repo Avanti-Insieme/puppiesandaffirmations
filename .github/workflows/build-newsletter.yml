@@ -1,0 +1,33 @@
+name: Build newsletter files
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  newsletter:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build newsletter files
+        run: node scripts/build-newsletter.mjs
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: newsletter/rebuild
+          title: "Rebuild newsletter files"
+          commit-message: "Rebuild newsletter files"
+          body: "Rebuilt newsletter files from the current queue."

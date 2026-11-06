@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import queue from '../content/queue.json';
+import { halifaxDate } from '../todaysPost.js';
 
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -6,14 +8,16 @@ const MONTHS = [
 ];
 const WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
-export default function Calendar({ affirmation }) {
-  const [open, setOpen] = useState(false);
-  const [selectedDay, setSelectedDay] = useState(null);
+const pad = (n) => String(n).padStart(2, '0');
 
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth();
-  const todayDate = today.getDate();
+export default function Calendar() {
+  const [open, setOpen] = useState(false);
+  const [selectedIso, setSelectedIso] = useState(null);
+
+  // "Today" is the Halifax date, the same one the site uses to pick the post.
+  const todayIso = halifaxDate();
+  const [year, month1, todayDate] = todayIso.split('-').map(Number);
+  const month = month1 - 1;
   const monthName = MONTHS[month];
 
   const firstWeekday = new Date(year, month, 1).getDay();
@@ -23,10 +27,23 @@ export default function Calendar({ affirmation }) {
     ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
   ];
 
+  const isoFor = (day) => `${year}-${pad(month1)}-${pad(day)}`;
+
+  // Future days are disabled. Dates compare as YYYY-MM-DD strings, which sort correctly.
+  const isFuture = (day) => isoFor(day) > todayIso;
+
   function dayClass(day) {
-    if (day === todayDate) return 'pa-cal-day is-today';
-    if (day === selectedDay) return 'pa-cal-day is-selected';
+    const iso = isoFor(day);
+    if (iso === todayIso) return 'pa-cal-day is-today';
+    if (iso === selectedIso) return 'pa-cal-day is-selected';
     return 'pa-cal-day';
+  }
+
+  // Shows the affirmation that ran on the chosen past day, if one was saved.
+  function noteFor(iso) {
+    const post = queue.posts.find((p) => p.date === iso);
+    if (post) return `${monthName} ${Number(iso.slice(8))}: “${post.text}”`;
+    return `No affirmation was saved for ${monthName} ${Number(iso.slice(8))}.`;
   }
 
   return (
@@ -64,7 +81,12 @@ export default function Calendar({ affirmation }) {
                   key={day}
                   type="button"
                   className={dayClass(day)}
-                  onClick={() => setSelectedDay((s) => (s === day ? null : day))}
+                  disabled={isFuture(day)}
+                  aria-label={isFuture(day) ? `${monthName} ${day}, not yet available` : undefined}
+                  onClick={() => {
+                    const iso = isoFor(day);
+                    setSelectedIso((s) => (s === iso ? null : iso));
+                  }}
                 >
                   {day}
                 </button>
@@ -72,11 +94,7 @@ export default function Calendar({ affirmation }) {
             )}
           </div>
 
-          {selectedDay && (
-            <p className="pa-cal-note">
-              {monthName} {selectedDay}: “{affirmation}”
-            </p>
-          )}
+          {selectedIso && <p className="pa-cal-note">{noteFor(selectedIso)}</p>}
         </div>
       )}
     </div>
