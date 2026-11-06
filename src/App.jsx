@@ -8,27 +8,18 @@ import Hero from './components/Hero.jsx';
 import AdSlot from './components/AdSlot.jsx';
 import Footer from './components/Footer.jsx';
 import NewsletterDialog from './components/NewsletterDialog.jsx';
-import AdminDialog from './components/AdminDialog.jsx';
-import AdminPanel from './components/AdminPanel.jsx';
 
 export default function App() {
   const wrapperRef = useRef(null);
   const [themeKey, setThemeKey] = useState(readSavedTheme);
-
-  // Admin edits override today's queued post until the page is reloaded.
-  const [affirmationOverride, setAffirmationOverride] = useState(null);
-  const [heroOverride, setHeroOverride] = useState(null);
-
   const [subscribed, setSubscribed] = useState(false);
   const [newsletterOpen, setNewsletterOpen] = useState(false);
-  const [adminDialogOpen, setAdminDialogOpen] = useState(false);
-  const [adminPanelOpen, setAdminPanelOpen] = useState(false);
 
   // Today's post comes from the approved queue (src/content/queue.json).
   const todays = currentPost(queue);
-  const affirmation = affirmationOverride ?? todays?.text ?? DEFAULT_AFFIRMATION;
-  const heroSrc = heroOverride ?? todays?.photo?.src ?? '';
-  const credit = heroOverride === null ? (todays?.photo ?? null) : null;
+  const affirmation = todays?.text ?? DEFAULT_AFFIRMATION;
+  const heroSrc = todays?.photo?.src ?? '';
+  const credit = todays?.photo ?? null;
 
   useEffect(() => {
     applyTheme(themeKey, wrapperRef.current);
@@ -39,33 +30,16 @@ export default function App() {
     setThemeKey(key);
   }
 
-  function handleLogin() {
-    setAdminDialogOpen(false);
-    setAdminPanelOpen(true);
-  }
-
-  function handleLogout() {
-    setAdminPanelOpen(false);
-    setAdminDialogOpen(false);
-  }
-
   return (
     <div className="pa-page" ref={wrapperRef}>
       <Nav
-        affirmation={affirmation}
         themeKey={themeKey}
         onSelectTheme={selectTheme}
         onOpenNewsletter={() => setNewsletterOpen(true)}
-        onOpenAdmin={() => setAdminDialogOpen(true)}
       />
 
       <main className="pa-wrap pa-main">
-        <Hero
-          affirmation={affirmation}
-          heroSrc={heroSrc}
-          credit={credit}
-          onHeroChange={setHeroOverride}
-        />
+        <Hero affirmation={affirmation} heroSrc={heroSrc} credit={credit} onHeroChange={() => {}} />
 
         <section className="pa-ad-row">
           <AdSlot label="728 × 90 ad slot" wide />
@@ -96,20 +70,6 @@ export default function App() {
           subscribed={subscribed}
           onSubscribe={() => setSubscribed(true)}
           onClose={() => setNewsletterOpen(false)}
-        />
-      )}
-
-      {adminDialogOpen && (
-        <AdminDialog onClose={() => setAdminDialogOpen(false)} onLogin={handleLogin} />
-      )}
-
-      {adminPanelOpen && (
-        <AdminPanel
-          affirmation={affirmation}
-          onSaveAffirmation={setAffirmationOverride}
-          onApplyImage={setHeroOverride}
-          onClose={() => setAdminPanelOpen(false)}
-          onLogout={handleLogout}
         />
       )}
     </div>
