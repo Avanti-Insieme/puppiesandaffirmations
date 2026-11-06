@@ -11,6 +11,8 @@ const COOLDOWN_DAYS = 90;   // a photo is not reused within this many days
 const TEXT_MEMORY = 90;     // recent affirmations remembered to avoid repeats
 const PAGES_PER_TERM = 3;   // 6 terms x 3 pages = 18 search requests per run
 const SEARCH_TERMS = ['puppy', 'dog', 'golden retriever', 'corgi', 'puppies playing', 'happy dog'];
+// Set GEMINI_MODEL as a repository variable (Settings → Secrets and variables → Actions → Variables)
+// to change models without editing code. The fallback is the model Google's error message recommends.
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
 
 const ROOT = process.cwd();
@@ -37,6 +39,21 @@ function setChanged(changed) {
 
 // ── Affirmations (Gemini) ────────────────────────────────────────
 
+// Retries temporary failures (429 rate limits and 503 overloads) with growing waits.
+// Other errors are returned at once, so a wrong key or model still fails quickly.
+async function fetchWithRetry(url, options, attempts = 5) {
+  let res;
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    res = await fetch(url, options);
+    const temporary = res.status === 429 || res.status === 503 || res.status === 500;
+    if (!temporary || attempt === attempts) return res;
+    const waitMs = 15000 * attempt; // 15s, 30s, 45s, 60s
+    console.log(`Gemini returned ${res.status}; retrying in ${waitMs / 1000}s (attempt ${attempt + 1} of ${attempts}).`);
+    await new Promise((resolve) => setTimeout(resolve, waitMs));
+  }
+  return res;
+}
+
 async function generateAffirmations(count, avoid) {
   const avoidList = avoid.slice(0, 60);
   const prompt = `Write ${count} short affirmations for a calm, warm website that pairs each one with a photo of a dog.
@@ -48,7 +65,7 @@ Rules:
 - Do not repeat or closely resemble any of these: ${JSON.stringify(avoidList)}
 Return only a JSON array of ${count} strings.`;
 
-  const res = await fetch(
+  const res = await fetchWithRetry(
     `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
     {
       method: 'POST',
