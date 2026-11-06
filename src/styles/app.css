@@ -304,3 +304,19 @@ a:hover { color: var(--color-accent-700); }
   opacity: 0.6;
 }
 .pa-subscribed .ph-duotone { font-size: 16px; vertical-align: -2px; margin-right: 4px; }
+
+/* ── Hero photo (display only) ───────────────────────────────── */
+.pa-hero-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* ── Calendar: future days are unavailable ───────────────────── */
+.pa-cal-day:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: transparent;
+}
+.pa-cal-day:disabled:hover { background: transparent; }
