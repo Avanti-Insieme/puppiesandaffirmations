@@ -8,7 +8,7 @@ export default function Hero({ affirmation, heroSrc, credit }) {
         <h1 className="pa-headline">{affirmation}</h1>
       </section>
 
-      <section className="halftone pa-hero-frame">
+      <section className="pa-hero-frame">
         <ImageSlot src={heroSrc} onChange={null} />
       </section>
 
