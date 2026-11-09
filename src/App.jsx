@@ -39,7 +39,7 @@ export default function App() {
       />
 
       <main className="pa-wrap pa-main">
-        <Hero affirmation={affirmation} heroSrc={heroSrc} credit={credit} onHeroChange={() => {}} />
+        <Hero affirmation={affirmation} heroSrc={heroSrc} credit={credit} onHeroChange={null} />
 
         <section className="pa-ad-row">
           <AdSlot label="728 × 90 ad slot" wide />
