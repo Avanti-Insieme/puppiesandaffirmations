@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/build-pages.mjs",
     "preview": "vite preview",
     "batch": "node scripts/generate-batch.mjs",
-    "newsletter": "node scripts/build-newsletter.mjs"
+    "newsletter": "node scripts/build-newsletter.mjs",
+    "pages": "node scripts/build-pages.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

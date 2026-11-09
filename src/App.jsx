@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import queue from './content/queue.json';
+import archive from './content/archive.json';
+import { mergePosts, findPost } from './posts.js';
 import { DEFAULT_AFFIRMATION } from './data.js';
 import { currentPost } from './todaysPost.js';
 import { applyTheme, readSavedTheme, saveTheme } from './theme.js';
@@ -15,11 +17,15 @@ export default function App() {
   const [subscribed, setSubscribed] = useState(false);
   const [newsletterOpen, setNewsletterOpen] = useState(false);
 
-  // Today's post comes from the approved queue (src/content/queue.json).
-  const todays = currentPost(queue);
-  const affirmation = todays?.text ?? DEFAULT_AFFIRMATION;
-  const heroSrc = todays?.photo?.src ?? '';
-  const credit = todays?.photo ?? null;
+  // Every post, from the queue and the permanent archive.
+  const allPosts = mergePosts(queue, archive);
+
+  // /affirmations/YYYY-MM-DD shows that day's post. The homepage shows today's.
+  const routeMatch = window.location.pathname.match(/^\/affirmations\/(\d{4}-\d{2}-\d{2})\/?$/);
+  const shown = routeMatch ? findPost(allPosts, routeMatch[1]) : currentPost(queue);
+  const affirmation = shown?.text ?? DEFAULT_AFFIRMATION;
+  const heroSrc = shown?.photo?.src ?? '';
+  const credit = shown?.photo ?? null;
 
   useEffect(() => {
     applyTheme(themeKey, wrapperRef.current);

@@ -4,6 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { addDays, publishDate } from '../src/todaysPost.js';
+import { mergePosts } from '../src/posts.js';
 
 const BATCH_SIZE = 21;
 const REFILL_BELOW = 7;     // start a new batch when fewer upcoming posts remain
@@ -18,6 +19,7 @@ const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
 const ROOT = process.cwd();
 const QUEUE_PATH = path.join(ROOT, 'src/content/queue.json');
 const HISTORY_PATH = path.join(ROOT, 'src/content/history.json');
+const ARCHIVE_PATH = path.join(ROOT, 'src/content/archive.json');
 
 // ── Files ────────────────────────────────────────────────────────
 
@@ -204,9 +206,13 @@ async function main() {
   const today = publishDate();
   const queue = readJson(QUEUE_PATH, { generatedAt: null, posts: [] });
   const history = readJson(HISTORY_PATH, { photos: [], texts: [] });
+  const archive = readJson(ARCHIVE_PATH, { posts: [] });
 
-  // Drop posts that went live more than a week ago.
-  queue.posts = queue.posts.filter((p) => p.date >= addDays(today, -7));
+  // Posts that went live more than a week ago leave the queue, but they stay in the
+  // archive, so their pages keep existing. The archive is only ever added to.
+  const cutoff = addDays(today, -7);
+  const expired = queue.posts.filter((p) => p.date < cutoff);
+  queue.posts = queue.posts.filter((p) => p.date >= cutoff);
   const upcoming = queue.posts.filter((p) => p.date >= today);
 
   if (upcoming.length >= REFILL_BELOW) {
@@ -242,7 +248,10 @@ async function main() {
   queue.posts = [...queue.posts, ...newPosts];
   queue.generatedAt = new Date().toISOString();
 
+  archive.posts = mergePosts({ posts: expired }, archive);
+
   writeJson(QUEUE_PATH, queue);
+  writeJson(ARCHIVE_PATH, archive);
   writeJson(HISTORY_PATH, history);
   writeSummary(newPosts, usedFallback);
 
