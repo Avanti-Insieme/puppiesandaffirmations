@@ -6,8 +6,9 @@ export const SITE_URL = 'https://puppiesandaffirmations.com';
 export const SITE_NAME = 'Puppies and Affirmations';
 export const SITE_LANGUAGE = 'en-CA';
 
-// Contact address shown on the advertise page. Confirm this mailbox exists before launch.
-export const ADVERTISE_EMAIL = 'hello@puppiesandaffirmations.com';
+// Contact address shown on the advertise page. The mailbox lives on the .ca domain.
+// The .ca domain only redirects to .com for web visitors (see _redirects); email is unaffected.
+export const ADVERTISE_EMAIL = 'hello@puppiesandaffirmations.ca';
 
 export const HOME_TITLE = 'Puppies and Affirmations | A daily affirmation and a dog photo';
 export const HOME_DESCRIPTION =
@@ -38,8 +39,22 @@ export function postUrl(post) {
   return absoluteUrl(postPath(post));
 }
 
+// Search results cut titles at about 60 characters. Post titles stay within that limit,
+// and the site name is carried by the header and the structured data instead.
+export function shortenAtWord(text, max = 60) {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(' ');
+  return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut).replace(/[ ,;:]+$/, '') + '…';
+}
+
 export function postTitle(post) {
-  return `${post.text} | ${SITE_NAME}`;
+  return shortenAtWord(post.text, 60);
+}
+
+// The tall image for Pinterest. Each live post gets one, built at deploy time.
+export function pinUrl(post) {
+  return absoluteUrl(`/pins/${post.date}.jpg`);
 }
 
 export function postDescription(post) {

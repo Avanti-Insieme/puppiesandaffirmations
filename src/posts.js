@@ -63,6 +63,11 @@ export function postPath(post) {
   return `/affirmations/${post.date}/${post.slug}`;
 }
 
+// Only posts whose day has arrived. Queued posts for later days are hidden until then.
+export function livePosts(posts, today) {
+  return posts.filter((p) => p.date <= today);
+}
+
 // The most recent posts that are already live, newest first.
 export function recentPosts(posts, today, count = 7) {
   return posts
