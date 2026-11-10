@@ -11,6 +11,7 @@ import path from 'node:path';
 import sharp from 'sharp';
 import { mergePosts, postPath, recentPosts, livePosts } from '../src/posts.js';
 import { TIME_ZONE, publishDate } from '../src/todaysPost.js';
+import { ABOUT, ADVERTISE, ARCHIVE } from '../src/pageCopy.js';
 import {
   SITE_URL, SITE_NAME, HOME_TITLE, HOME_DESCRIPTION, KEYWORDS, OG_IMAGE,
   OG_IMAGE_WIDTH, OG_IMAGE_HEIGHT, ADVERTISE_EMAIL, absoluteUrl, postUrl,
@@ -170,9 +171,9 @@ function archiveBody(posts) {
   return `<div class="pa-page"><main class="pa-wrap pa-main pa-static pa-archive">
       ${header()}
       <article>
-        <p class="pa-kicker">Archive</p>
-        <h1 class="pa-headline">Every affirmation so far</h1>
-        <p class="pa-intro-text">${posts.length} posts, newest first.</p>
+        <p class="pa-kicker">${esc(ARCHIVE.kicker)}</p>
+        <h1 class="pa-headline">${esc(ARCHIVE.title)}</h1>
+        <p class="pa-intro-text">${esc(ARCHIVE.count(posts.length))}</p>
         <ol class="pa-archive-list">
           ${items}
         </ol>
@@ -184,13 +185,12 @@ function aboutBody() {
   return `<div class="pa-page"><main class="pa-wrap pa-main pa-static pa-about">
       ${header()}
       <article>
-        <p class="pa-kicker">About</p>
-        <h1 class="pa-headline">A small gift, made every day</h1>
-        <p class="pa-intro-text">Some time ago, I gave a dear friend a simple calendar with handwritten notes for each month. It was meant to brighten a day. Months later, I heard it had brightened another one.</p>
-        <p class="pa-intro-text">So this year I wanted to take that idea further. I built this site to share a daily affirmation and a dog photo. Some days that's all the comfort a browser tab needs to offer.</p>
-        <h2 class="pa-section-kicker pa-section-kicker--spaced">How it's made</h2>
-        <p class="pa-intro-text">Each affirmation is drafted with the help of an AI model, then reviewed by a person before it goes live. Photos come from Unsplash, and every photo credits its photographer.</p>
-        <h2 class="pa-section-kicker pa-section-kicker--spaced">Contact</h2>
+        <p class="pa-kicker">${esc(ABOUT.kicker)}</p>
+        <h1 class="pa-headline">${esc(ABOUT.title)}</h1>
+        ${ABOUT.paragraphs.map((t) => `<p class="pa-intro-text">${esc(t)}</p>`).join('\n        ')}
+        <h2 class="pa-section-kicker pa-section-kicker--spaced">${esc(ABOUT.howTitle)}</h2>
+        <p class="pa-intro-text">${esc(ABOUT.how)}</p>
+        <h2 class="pa-section-kicker pa-section-kicker--spaced">${esc(ABOUT.contactTitle)}</h2>
         <p class="pa-intro-text">Questions or feedback: <a href="mailto:${esc(ADVERTISE_EMAIL)}">${esc(ADVERTISE_EMAIL)}</a>.</p>
         <p><a href="/">Back to today's affirmation</a></p>
       </article>
@@ -213,16 +213,15 @@ function advertiseBody() {
   return `<div class="pa-page"><main class="pa-wrap pa-main pa-static pa-advertise">
       ${header()}
       <article>
-        <p class="pa-kicker">Advertise</p>
+        <p class="pa-kicker">${esc(ADVERTISE.kicker)}</p>
         <h1 class="pa-headline">Advertise on ${esc(SITE_NAME)}</h1>
-        <p class="pa-intro-text">${esc(SITE_NAME)} is a small, calm site. Each day it shares a short affirmation and a dog photo, and readers can sign up to receive them by email.</p>
-        <h2 class="pa-section-kicker pa-section-kicker--spaced">Placements</h2>
+        <p class="pa-intro-text">${esc(ADVERTISE.intro(SITE_NAME))}</p>
+        <h2 class="pa-section-kicker pa-section-kicker--spaced">${esc(ADVERTISE.placementsTitle)}</h2>
         <ul>
-          <li><strong>Leaderboard</strong>, 728 × 90 pixels, shown under the daily affirmation.</li>
-          <li><strong>Rectangle</strong>, 300 × 250 pixels, shown beside the story.</li>
+          ${ADVERTISE.placements.map((p) => `<li><strong>${esc(p.name)}</strong>, ${esc(p.detail)}</li>`).join('\n          ')}
         </ul>
-        <p>Both spaces have fixed sizes, so they never push the page around as they load.</p>
-        <p>To ask about a placement, email <a href="mailto:${esc(ADVERTISE_EMAIL)}">${esc(ADVERTISE_EMAIL)}</a>.</p>
+        <p>${esc(ADVERTISE.note)}</p>
+        <p>${esc(ADVERTISE.contact)} <a href="mailto:${esc(ADVERTISE_EMAIL)}">${esc(ADVERTISE_EMAIL)}</a>.</p>
         <p><a href="/">Back to the site</a></p>
       </article>
     </main></div>`;

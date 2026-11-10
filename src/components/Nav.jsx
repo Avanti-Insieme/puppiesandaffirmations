@@ -1,15 +1,19 @@
 import Calendar from './Calendar.jsx';
 import ThemePicker from './ThemePicker.jsx';
 
-// The Admin button is hidden for now. See README: the admin panel has no real
-// sign-in, so it stays off until a real login is added.
+// The header links to the archive and the About page. The brand links home.
 export default function Nav({ themeKey, onSelectTheme, onOpenNewsletter }) {
   return (
     <nav className="nav pa-nav">
-      <span className="nav-brand pa-brand">
+      <a className="nav-brand pa-brand" href="/">
         <i className="ph-duotone ph-paw-print" />
         Puppies &amp; Affirmations
-      </span>
+      </a>
+
+      <div className="pa-nav-links">
+        <a href="/affirmations/">Archive</a>
+        <a href="/about">About</a>
+      </div>
 
       <div className="pa-nav-actions">
         <Calendar />
