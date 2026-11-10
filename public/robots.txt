@@ -1,0 +1,5 @@
+# Allow all crawlers. The sitemap lists every post page.
+User-agent: *
+Allow: /
+
+Sitemap: https://puppiesandaffirmations.com/sitemap.xml

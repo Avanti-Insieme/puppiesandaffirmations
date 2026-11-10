@@ -13,7 +13,7 @@ export default function ImageSlot({ src, onChange }) {
   }
 
   function openPicker() {
-    inputRef.current?.click();
+    window.open(src, '_blank');
   }
 
   return (
@@ -23,22 +23,6 @@ export default function ImageSlot({ src, onChange }) {
       tabIndex={0}
       aria-label="Hero photo. Click or drop an image to replace it."
       onClick={openPicker}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openPicker();
-        }
-      }}
-      onDragOver={(e) => {
-        e.preventDefault();
-        setDragging(true);
-      }}
-      onDragLeave={() => setDragging(false)}
-      onDrop={(e) => {
-        e.preventDefault();
-        setDragging(false);
-        loadFile(e.dataTransfer.files[0]);
-      }}
     >
       {src ? (
         <img src={src} alt="A good dog" />

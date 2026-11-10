@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import queue from '../content/queue.json';
+import archive from '../content/archive.json';
 import { halifaxDate } from '../todaysPost.js';
+import { mergePosts, findPost } from '../posts.js';
+
+const allPosts = mergePosts(queue, archive);
 
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -41,7 +45,7 @@ export default function Calendar() {
 
   // Shows the affirmation that ran on the chosen past day, if one was saved.
   function noteFor(iso) {
-    const post = queue.posts.find((p) => p.date === iso);
+    const post = findPost(allPosts, iso);
     if (post) return `${monthName} ${Number(iso.slice(8))}: “${post.text}”`;
     return `No affirmation was saved for ${monthName} ${Number(iso.slice(8))}.`;
   }

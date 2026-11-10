@@ -5,18 +5,22 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/build-pages.mjs",
     "preview": "vite preview",
     "batch": "node scripts/generate-batch.mjs",
-    "newsletter": "node scripts/build-newsletter.mjs"
+    "newsletter": "node scripts/build-newsletter.mjs",
+    "pages": "node scripts/build-pages.mjs"
   },
   "dependencies": {
+    "@fontsource/source-serif-4": "^5.3.1",
+    "@phosphor-icons/web": "^2.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
     "nodemailer": "^6.9.13",
+    "sharp": "^0.35.5",
     "vite": "^5.4.0"
   }
 }

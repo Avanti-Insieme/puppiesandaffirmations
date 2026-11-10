@@ -1,6 +1,6 @@
 import ImageSlot from "./ImageSlot";
 
-export default function Hero({ affirmation, heroSrc, credit }) {
+export default function Hero({ affirmation, heroSrc, credit, reflection }) {
   return (
     <>
       <section className="pa-hero-text">
@@ -8,11 +8,12 @@ export default function Hero({ affirmation, heroSrc, credit }) {
         <h1 className="pa-headline">{affirmation}</h1>
       </section>
 
-      <section className="halftone pa-hero-frame">
+      <section className="pa-hero-frame">
         <ImageSlot src={heroSrc} onChange={null} />
       </section>
 
       {credit && <PhotoCredit photo={credit} />}
+      {reflection && <p className="pa-reflection">{reflection}</p>}
     </>
   );
 }
