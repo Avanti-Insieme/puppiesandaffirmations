@@ -8,7 +8,7 @@
 // over the same page in the browser.
 import fs from 'node:fs';
 import path from 'node:path';
-import { mergePosts, postPath, recentPosts } from '../src/posts.js';
+import { mergePosts, postPath, recentPosts, livePosts } from '../src/posts.js';
 import { TIME_ZONE, publishDate } from '../src/todaysPost.js';
 import {
   SITE_URL, SITE_NAME, HOME_TITLE, HOME_DESCRIPTION, KEYWORDS, OG_IMAGE,
@@ -78,13 +78,13 @@ const jsonLdScript = (data) => `<script type="application/ld+json">${jsonLd(data
 
 // Fills the built index.html template: new head tags, the static body inside #root.
 // Pages without the app (like /advertise) also drop the app's script tag.
-function buildHtml(template, { title, head, body, app = true }) {
+function buildHtml(template, { title, head, body, app = true, canonical = true }) {
   let page = template.replace(/<title>[^<]*<\/title>/, () => `<title>${esc(title)}</title>\n    ${head.join('\n    ')}`);
   if (!app) page = page.replace(/<script type="module"[^>]*><\/script>/g, '');
   page = page.replace('<div id="root"></div>', () => `<div id="root">${body}</div>`);
 
   // Fail the build rather than publish pages without their content.
-  if (!page.includes('pa-static') || !page.includes('rel="canonical"')) {
+  if (!page.includes('pa-static') || (canonical && !page.includes('rel="canonical"'))) {
     throw new Error(`Could not fill the page template for "${title}". Check dist/index.html.`);
   }
   return page;
@@ -93,7 +93,13 @@ function buildHtml(template, { title, head, body, app = true }) {
 // ── Static bodies ────────────────────────────────────────────────
 
 const header = () =>
-  `<header class="pa-static-head"><a class="pa-static-brand" href="/">${esc(SITE_NAME)}</a></header>`;
+  `<header class="pa-static-head">
+        <a class="pa-static-brand" href="/">${esc(SITE_NAME)}</a>
+        <nav class="pa-static-nav" aria-label="Site">
+          <a href="/about">About</a>
+          <a href="/advertise">Advertise</a>
+        </nav>
+      </header>`;
 
 function recentList(posts) {
   if (posts.length === 0) return '';
@@ -133,9 +139,39 @@ function postBody(post, recent) {
         <h1 class="pa-headline">${esc(post.text)}</h1>
         <img class="pa-hero-img" src="${esc(post.photo.src)}" alt="${esc(post.photo.alt)}" />
         ${creditHtml(post.photo)}
+        ${post.reflection ? `<p class="pa-reflection">${esc(post.reflection)}</p>` : ''}
         <p><a href="/">See today's affirmation</a></p>
       </article>
       ${recentList(recent)}
+    </main></div>`;
+}
+
+function aboutBody() {
+  return `<div class="pa-page"><main class="pa-wrap pa-main pa-static pa-about">
+      ${header()}
+      <article>
+        <p class="pa-kicker">About</p>
+        <h1 class="pa-headline">A small gift, made every day</h1>
+        <p class="pa-intro-text">Some time ago, I gave a dear friend a simple calendar with handwritten notes for each month. It was meant to brighten a day. Months later, I heard it had brightened another one.</p>
+        <p class="pa-intro-text">So this year I wanted to take that idea further. I built this site to share a daily affirmation and a dog photo. Some days that's all the comfort a browser tab needs to offer.</p>
+        <h2 class="pa-section-kicker pa-section-kicker--spaced">How it's made</h2>
+        <p class="pa-intro-text">Each affirmation is drafted with the help of an AI model, then reviewed by a person before it goes live. Photos come from Unsplash, and every photo credits its photographer.</p>
+        <h2 class="pa-section-kicker pa-section-kicker--spaced">Contact</h2>
+        <p class="pa-intro-text">Questions or feedback: <a href="mailto:${esc(ADVERTISE_EMAIL)}">${esc(ADVERTISE_EMAIL)}</a>.</p>
+        <p><a href="/">Back to today's affirmation</a></p>
+      </article>
+    </main></div>`;
+}
+
+function notFoundBody() {
+  return `<div class="pa-page"><main class="pa-wrap pa-main pa-static">
+      ${header()}
+      <article>
+        <p class="pa-kicker">Page not found</p>
+        <h1 class="pa-headline">This page has wandered off.</h1>
+        <p class="pa-intro-text">The link may be old or mistyped. You can start again with today's affirmation.</p>
+        <p><a href="/">Go to today's affirmation</a></p>
+      </article>
     </main></div>`;
 }
 
@@ -163,6 +199,7 @@ function advertiseBody() {
 function sitemap(posts) {
   const entries = [
     `  <url><loc>${SITE_URL}/</loc></url>`,
+    `  <url><loc>${absoluteUrl('/about')}</loc></url>`,
     `  <url><loc>${absoluteUrl('/advertise')}</loc></url>`,
     ...posts.map((p) => `  <url><loc>${postUrl(p)}</loc><lastmod>${p.date}</lastmod></url>`),
   ];
@@ -176,7 +213,11 @@ ${entries.join('\n')}
 // Old links were /affirmations/<date>. Each one now moves permanently to its slug URL.
 function redirects(posts) {
   const lines = [
-    '# Written by scripts/build-pages.mjs. Old date-only post links move to the slug URL.',
+    '# Written by scripts/build-pages.mjs.',
+    '# The .ca domain sends visitors to the .com site, keeping the path.',
+    'https://puppiesandaffirmations.ca/* https://puppiesandaffirmations.com/:splat 301!',
+    'https://www.puppiesandaffirmations.ca/* https://puppiesandaffirmations.com/:splat 301!',
+    '# Old date-only post links move to the slug URL.',
   ];
   for (const p of posts) {
     lines.push(`/affirmations/${p.date} ${postPath(p)} 301!`);
@@ -196,10 +237,9 @@ function main() {
 
   const queue = readJson(path.join(ROOT, 'src/content/queue.json'), { posts: [] });
   const archive = readJson(path.join(ROOT, 'src/content/archive.json'), { posts: [] });
-  const posts = mergePosts(queue, archive);
-
-  // Only posts that are already live appear in the "recent" lists.
+  // Only posts whose day has arrived get pages. Later posts are built on the day they go live.
   const today = publishDate();
+  const posts = livePosts(mergePosts(queue, archive), today);
   const recent = recentPosts(posts, today, 7);
 
   // Homepage (overwrites dist/index.html, which the template was read from).
@@ -239,6 +279,28 @@ function main() {
     }),
     body: advertiseBody(),
     app: false,
+  }));
+
+  const aboutTitle = `About | ${SITE_NAME}`;
+  write(path.join(DIST, 'about', 'index.html'), buildHtml(template, {
+    title: aboutTitle,
+    head: socialTags({
+      title: aboutTitle,
+      description: `The story behind ${SITE_NAME}, a daily affirmation and dog photo site, and how it is made.`,
+      url: absoluteUrl('/about'),
+      type: 'website',
+    }),
+    body: aboutBody(),
+    app: false,
+  }));
+
+  // Netlify serves dist/404.html for any URL without a page.
+  write(path.join(DIST, '404.html'), buildHtml(template, {
+    title: `Page not found | ${SITE_NAME}`,
+    head: ['<meta name="robots" content="noindex" />'],
+    body: notFoundBody(),
+    app: false,
+    canonical: false,
   }));
 
   write(path.join(DIST, 'sitemap.xml'), sitemap(posts));

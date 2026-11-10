@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import queue from './content/queue.json';
 import archive from './content/archive.json';
-import { mergePosts, findPost, recentPosts } from './posts.js';
+import { mergePosts, findPost, recentPosts, livePosts } from './posts.js';
 import { DEFAULT_AFFIRMATION } from './data.js';
 import { currentPost, publishDate } from './todaysPost.js';
 import { applyTheme, readSavedTheme, saveTheme } from './theme.js';
@@ -19,8 +19,10 @@ export default function App() {
   const [subscribed, setSubscribed] = useState(false);
   const [newsletterOpen, setNewsletterOpen] = useState(false);
 
-  // Every post, from the queue and the permanent archive.
-  const allPosts = mergePosts(queue, archive);
+  // Every post, from the queue and the permanent archive. Only posts whose day has
+  // arrived are shown, so queued posts for later days stay hidden.
+  const today = publishDate();
+  const allPosts = livePosts(mergePosts(queue, archive), today);
 
   // /affirmations/YYYY-MM-DD/<slug> shows that post. The homepage shows today's.
   // The slug is for readers and search engines, so any slug after the date works here.
@@ -29,9 +31,10 @@ export default function App() {
   const affirmation = shown?.text ?? DEFAULT_AFFIRMATION;
   const heroSrc = shown?.photo?.src ?? '';
   const credit = shown?.photo ?? null;
+  const reflection = shown?.reflection ?? '';
 
   // The seven most recent posts that are already live.
-  const recent = recentPosts(allPosts, publishDate(), 7);
+  const recent = recentPosts(allPosts, today, 7);
 
   useEffect(() => {
     applyTheme(themeKey, wrapperRef.current);
@@ -53,7 +56,7 @@ export default function App() {
       />
 
       <main className="pa-wrap pa-main">
-        <Hero affirmation={affirmation} heroSrc={heroSrc} credit={credit} onHeroChange={null} />
+        <Hero affirmation={affirmation} heroSrc={heroSrc} credit={credit} reflection={reflection} onHeroChange={null} />
 
         <section className="pa-ad-row">
           <AdSlot
@@ -75,6 +78,7 @@ export default function App() {
               that would provide daily affirmations and photos.
               Some days that's all the comfort a browser tab needs to offer.
             </p>
+            <p className="pa-about-link"><a href="/about">Read more about this site</a></p>
           </div>
           <AdSlot
             size="rectangle"

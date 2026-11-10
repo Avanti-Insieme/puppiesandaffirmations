@@ -58,14 +58,15 @@ async function fetchWithRetry(url, options, attempts = 5) {
 
 async function generateAffirmations(count, avoid) {
   const avoidList = avoid.slice(0, 60);
-  const prompt = `Write ${count} short affirmations for a calm, warm website that pairs each one with a photo of a dog.
-Rules:
-- One sentence each, under 120 characters.
-- Sincere and gentle. Never preachy, and never a command to feel a certain way.
+  const prompt = `Write ${count} items for a calm, warm website that pairs each one with a photo of a dog.
+Each item has two parts:
+- "affirmation": one sentence, under 120 characters. Sincere and gentle. Never preachy, and never a command to feel a certain way.
+- "reflection": two or three short sentences, under 350 characters, that gently expand on the affirmation with a calm thought about the moment it describes. No advice and no instructions.
+Rules for both parts:
 - No medical, financial, political, or religious claims. Do not mention illness, death, weight, or diet.
 - Every affirmation must differ in wording and idea from the others.
-- Do not repeat or closely resemble any of these: ${JSON.stringify(avoidList)}
-Return only a JSON array of ${count} strings.`;
+- Do not repeat or closely resemble any of these affirmations: ${JSON.stringify(avoidList)}
+Return only a JSON array of ${count} objects with the keys "affirmation" and "reflection".`;
 
   const res = await fetchWithRetry(
     `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
@@ -90,11 +91,21 @@ Return only a JSON array of ${count} strings.`;
   const list = JSON.parse(text);
   if (!Array.isArray(list)) throw new Error('Gemini did not return a JSON array.');
 
+  // Keep only complete, unique items that aren't copies of recent affirmations.
   const blocked = new Set(avoid.map((s) => s.trim().toLowerCase()));
-  const clean = [...new Set(list.map((s) => String(s).trim()))].filter(
-    (s) => s.length > 0 && s.length <= 140 && !blocked.has(s.toLowerCase()),
-  );
-  if (clean.length < count) throw new Error(`Only ${clean.length} usable affirmations, need ${count}.`);
+  const seen = new Set();
+  const clean = [];
+  for (const item of list) {
+    const affirmation = String(item?.affirmation ?? '').trim();
+    const reflection = String(item?.reflection ?? '').trim();
+    const key = affirmation.toLowerCase();
+    if (!affirmation || affirmation.length > 140) continue;
+    if (!reflection || reflection.length > 400) continue;
+    if (blocked.has(key) || seen.has(key)) continue;
+    seen.add(key);
+    clean.push({ text: affirmation, reflection });
+  }
+  if (clean.length < count) throw new Error(`Only ${clean.length} usable items, need ${count}.`);
   return clean.slice(0, count);
 }
 
@@ -225,7 +236,7 @@ async function main() {
   if (start < today) start = today;
 
   const avoid = [...history.texts, ...queue.posts.map((p) => p.text)];
-  const texts = await generateAffirmations(BATCH_SIZE, avoid);
+  const drafts = await generateAffirmations(BATCH_SIZE, avoid);
 
   const candidates = await fetchCandidates();
   const queuedIds = new Set(queue.posts.map((p) => p.photo.id));
@@ -233,10 +244,10 @@ async function main() {
 
   // Each new post gets a slug that no existing post uses, and keeps it for good.
   const taken = new Set(mergePosts({ posts: [...queue.posts, ...expired] }, archive).map((p) => p.slug));
-  const newPosts = texts.map((text, i) => {
+  const newPosts = drafts.map(({ text, reflection }, i) => {
     const slug = uniqueSlug(text, taken);
     taken.add(slug);
-    return { date: addDays(start, i), slug, text, photo: photoRecord(picks[i]) };
+    return { date: addDays(start, i), slug, text, reflection, photo: photoRecord(picks[i]) };
   });
 
   for (const photo of picks) await trackDownload(photo);
@@ -245,7 +256,7 @@ async function main() {
     ...history.photos.filter((h) => h.usedOn >= addDays(today, -COOLDOWN_DAYS)),
     ...newPosts.map((p) => ({ id: p.photo.id, usedOn: p.date })),
   ];
-  history.texts = [...texts, ...history.texts].slice(0, TEXT_MEMORY);
+  history.texts = [...drafts.map((d) => d.text), ...history.texts].slice(0, TEXT_MEMORY);
 
   queue.posts = [...queue.posts, ...newPosts];
   queue.generatedAt = new Date().toISOString();
