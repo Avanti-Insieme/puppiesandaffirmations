@@ -82,10 +82,28 @@ const jsonLdScript = (data) => `<script type="application/ld+json">${jsonLd(data
 
 // ── Page assembly ────────────────────────────────────────────────
 
+// Cookie-free page views with Cloudflare Web Analytics. The beacon is added only when
+// CF_WEB_ANALYTICS_TOKEN is set at build time, so nothing loads without a token.
+// The token is public by design; it identifies the site, not a person.
+const ANALYTICS_TOKEN = (process.env.CF_WEB_ANALYTICS_TOKEN ?? '').trim();
+
+let warnedToken = false;
+function analyticsTag() {
+  if (!ANALYTICS_TOKEN) return '';
+  if (!/^[a-f0-9]{32}$/.test(ANALYTICS_TOKEN)) {
+    if (!warnedToken) console.warn('CF_WEB_ANALYTICS_TOKEN is not 32 hex characters. Analytics is off for this build.');
+    warnedToken = true;
+    return '';
+  }
+  return `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${ANALYTICS_TOKEN}"}'></script>`;
+}
+
 // Fills the built index.html template: new head tags, the static body inside #root.
 // Pages without the app (like /advertise) also drop the app's script tag.
 function buildHtml(template, { title, head, body, app = true, canonical = true }) {
   let page = template.replace(/<title>[^<]*<\/title>/, () => `<title>${esc(title)}</title>\n    ${head.join('\n    ')}`);
+  const beacon = analyticsTag();
+  if (beacon) page = page.replace('</head>', () => `    ${beacon}\n  </head>`);
   if (!app) page = page.replace(/<script type="module"[^>]*><\/script>/g, '');
   page = page.replace('<div id="root"></div>', () => `<div id="root">${body}</div>`);
 
