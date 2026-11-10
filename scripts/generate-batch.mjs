@@ -4,7 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { addDays, publishDate } from '../src/todaysPost.js';
-import { mergePosts } from '../src/posts.js';
+import { mergePosts, uniqueSlug } from '../src/posts.js';
 
 const BATCH_SIZE = 21;
 const REFILL_BELOW = 7;     // start a new batch when fewer upcoming posts remain
@@ -231,11 +231,13 @@ async function main() {
   const queuedIds = new Set(queue.posts.map((p) => p.photo.id));
   const { picks, usedFallback } = choosePhotos(BATCH_SIZE, candidates, history, queuedIds, today);
 
-  const newPosts = texts.map((text, i) => ({
-    date: addDays(start, i),
-    text,
-    photo: photoRecord(picks[i]),
-  }));
+  // Each new post gets a slug that no existing post uses, and keeps it for good.
+  const taken = new Set(mergePosts({ posts: [...queue.posts, ...expired] }, archive).map((p) => p.slug));
+  const newPosts = texts.map((text, i) => {
+    const slug = uniqueSlug(text, taken);
+    taken.add(slug);
+    return { date: addDays(start, i), slug, text, photo: photoRecord(picks[i]) };
+  });
 
   for (const photo of picks) await trackDownload(photo);
 

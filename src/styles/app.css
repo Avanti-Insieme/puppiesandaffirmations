@@ -168,14 +168,6 @@ a:hover { color: var(--color-accent-700); }
   display: flex;
   justify-content: center;
 }
-.pa-ad {
-  width: 100%;
-  max-width: 728px;
-  align-items: center;
-  text-align: center;
-  gap: var(--space-2);
-}
-.pa-ad-size { margin: 0; font-size: 12px; opacity: 0.55; }
 
 .pa-intro {
   padding: calc(1.5 * 28px) 0 calc(2.5 * 28px);
@@ -320,3 +312,169 @@ a:hover { color: var(--color-accent-700); }
   background: transparent;
 }
 .pa-cal-day:disabled:hover { background: transparent; }
+
+/* ── Ad slots: fixed sizes, reserved even when empty ─────────── */
+/* The size never changes, so the page does not shift when an ad loads. */
+.pa-ad-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+}
+.pa-slot {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.pa-slot--leaderboard { width: 100%; max-width: 728px; height: 90px; }
+.pa-slot--rectangle { width: 300px; max-width: 100%; height: 250px; }
+@media (max-width: 760px) {
+  .pa-slot--leaderboard { height: 100px; }
+}
+.pa-advertise-link {
+  font-size: 12px;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+}
+
+/* ── Newsletter card (shown in an empty ad box) ──────────────── */
+.pa-news-card {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+.pa-news-card--strip { justify-content: space-between; padding: 0 var(--space-4); }
+.pa-news-card--box {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-4);
+}
+.pa-news-title {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 17px;
+}
+.pa-news-title .ph-duotone { font-size: 20px; color: var(--color-accent); }
+.pa-news-card--strip .pa-news-title { justify-content: flex-start; }
+.pa-news-text {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--color-text) 75%, transparent);
+}
+.pa-news-card--box .pa-news-text { margin-top: var(--space-2); }
+@media (max-width: 760px) {
+  .pa-news-card--strip { padding: 0 var(--space-3); }
+  .pa-news-card--strip .pa-news-text { display: none; }
+}
+
+/* ── Recent affirmations button and panel ────────────────────── */
+.pa-fab-wrap {
+  position: fixed;
+  right: clamp(16px, 3vw, 28px);
+  bottom: clamp(16px, 3vw, 28px);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+.pa-fab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--color-text) 25%, transparent);
+}
+.pa-fab .ph-duotone { font-size: 20px; }
+.pa-fab:hover { background: var(--color-accent-700); }
+.pa-fab:focus-visible { outline: 3px solid var(--color-accent-300); outline-offset: 3px; }
+.pa-fab-panel {
+  width: 320px;
+  max-height: min(60vh, 480px);
+  overflow-y: auto;
+  padding: var(--space-3);
+}
+.pa-fab-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+.pa-fab-close {
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 18px;
+  padding: 4px;
+  cursor: pointer;
+}
+.pa-fab-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.pa-fab-list a {
+  display: flex;
+  gap: var(--space-2);
+  padding: 8px;
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.pa-fab-list a:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+.pa-fab-date { flex: none; width: 52px; font-size: 12px; color: var(--color-accent-700); padding-top: 2px; }
+.pa-fab-text { flex: 1; }
+@media (max-width: 760px) {
+  /* On a phone the panel becomes a sheet above the button, spanning the screen. */
+  .pa-fab-panel {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 84px;
+    width: auto;
+    max-height: 60vh;
+  }
+  .pa-footer { padding-bottom: 96px; }
+  /* Keep the button clear of the small "Advertise here" links on phones. */
+  .pa-fab-wrap { right: 16px; bottom: 16px; }
+  .pa-ad-row { padding-bottom: calc(2 * 28px); }
+}
+
+/* ── Static pages (post pages, homepage, /advertise) ─────────── */
+.pa-static-head { padding: var(--space-4) 0; }
+.pa-static-brand {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  color: var(--color-text);
+  text-decoration: none;
+}
+.pa-static article,
+.pa-static .pa-hero-text { max-width: 860px; margin: 0 auto; padding-top: calc(1.5 * 28px); }
+.pa-static .pa-hero-img { border-radius: var(--radius-lg); margin-top: var(--space-3); }
+.pa-recent { max-width: 680px; margin: calc(2 * 28px) auto 0; padding-bottom: calc(2 * 28px); }
+.pa-recent ol { padding-left: 20px; line-height: 1.9; }
+.pa-recent li span { margin-left: 6px; font-size: 12.5px; color: color-mix(in srgb, var(--color-text) 60%, transparent); }
+.pa-advertise article { max-width: 680px; }
+.pa-advertise ul { line-height: 1.9; padding-left: 20px; }
