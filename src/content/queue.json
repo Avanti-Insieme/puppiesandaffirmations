@@ -1,110 +1,6 @@
 {
-  "generatedAt": "2026-11-06T00:37:12.928Z",
+  "generatedAt": "2026-11-20T18:58:34.118Z",
   "posts": [
-    {
-      "date": "2026-11-05",
-      "text": "Soft paws and slow breathing bring peace to the afternoon.",
-      "photo": {
-        "id": "BDmfkFkXJzY",
-        "src": "https://images.unsplash.com/photo-1711376582747-22cd0839ffad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8NTd8fGhhcHB5JTIwZG9nfGVufDF8MHx8fDE3OTM5MjM4MTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-        "alt": "a person holding a dog in their arms",
-        "photographer": "Brian Kelly",
-        "photographerUrl": "https://unsplash.com/@brikelly?utm_source=puppies_affirmations&utm_medium=referral",
-        "photoUrl": "https://unsplash.com/photos/a-person-holding-a-dog-in-their-arms-BDmfkFkXJzY?utm_source=puppies_affirmations&utm_medium=referral"
-      },
-      "slug": "soft-paws-and-slow-breathing-bring-peace-to-the-afternoon"
-    },
-    {
-      "date": "2026-11-06",
-      "text": "There is a quiet grace in simply resting where the sunlight falls.",
-      "photo": {
-        "id": "RR-FwGB6PEU",
-        "src": "https://images.unsplash.com/photo-1529906920574-628dc1e49f5a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8Mzh8fHB1cHB5fGVufDF8MHx8fDE3OTM5MjM4MTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-        "alt": "white puppy rolling on green grass",
-        "photographer": "Daniël Maas",
-        "photographerUrl": "https://unsplash.com/@daniel7450?utm_source=puppies_affirmations&utm_medium=referral",
-        "photoUrl": "https://unsplash.com/photos/white-puppy-rolling-on-green-grass-RR-FwGB6PEU?utm_source=puppies_affirmations&utm_medium=referral"
-      },
-      "slug": "there-is-a-quiet-grace-in-simply-resting-where-the-sunlight"
-    },
-    {
-      "date": "2026-11-07",
-      "text": "Every gentle sigh lets go of yesterday's rushing.",
-      "photo": {
-        "id": "FVBNSmN531w",
-        "src": "https://images.unsplash.com/photo-1604606370896-41bfdc2626d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8NTh8fGhhcHB5JTIwZG9nfGVufDF8MHx8fDE3OTM5MjM4MTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-        "alt": "brown and white short coated dog",
-        "photographer": "Cierra Voelkl",
-        "photographerUrl": "https://unsplash.com/@therealredhead?utm_source=puppies_affirmations&utm_medium=referral",
-        "photoUrl": "https://unsplash.com/photos/brown-and-white-short-coated-dog-FVBNSmN531w?utm_source=puppies_affirmations&utm_medium=referral"
-      },
-      "slug": "every-gentle-sigh-lets-go-of-yesterdays-rushing"
-    },
-    {
-      "date": "2026-11-08",
-      "text": "A quiet heart finds its own rhythm in the stillness of the room.",
-      "photo": {
-        "id": "qO-PIF84Vxg",
-        "src": "https://images.unsplash.com/photo-1534361960057-19889db9621e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8Mnx8cHVwcHl8ZW58MXwwfHx8MTc5MzkyMzgxNHww&ixlib=rb-4.1.0&q=80&w=1080",
-        "alt": "shallow focus photography of white shih tzu puppy running on the grass",
-        "photographer": "Joe Caione",
-        "photographerUrl": "https://unsplash.com/@joeyc?utm_source=puppies_affirmations&utm_medium=referral",
-        "photoUrl": "https://unsplash.com/photos/shallow-focus-photography-of-white-shih-tzu-puppy-running-on-the-grass-qO-PIF84Vxg?utm_source=puppies_affirmations&utm_medium=referral"
-      },
-      "slug": "a-quiet-heart-finds-its-own-rhythm-in-the-stillness-of-the"
-    },
-    {
-      "date": "2026-11-09",
-      "text": "Warm fur and steady breathing offer a safe harbor for the mind.",
-      "photo": {
-        "id": "oPuT9b-ulbU",
-        "src": "https://images.unsplash.com/photo-1714623787752-4050ca04b49c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8ODd8fGhhcHB5JTIwZG9nfGVufDF8MHx8fDE3OTM5MjM4MTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-        "alt": "a dog with a leash on standing in the sand",
-        "photographer": "Bruno Cal",
-        "photographerUrl": "https://unsplash.com/@brunooh?utm_source=puppies_affirmations&utm_medium=referral",
-        "photoUrl": "https://unsplash.com/photos/a-dog-with-a-leash-on-standing-in-the-sand-oPuT9b-ulbU?utm_source=puppies_affirmations&utm_medium=referral"
-      },
-      "slug": "warm-fur-and-steady-breathing-offer-a-safe-harbor-for-the"
-    },
-    {
-      "date": "2026-11-10",
-      "text": "Time slows down when noticing the soft rise and fall of a resting chest.",
-      "photo": {
-        "id": "hElXaurNvb0",
-        "src": "https://images.unsplash.com/photo-1653763902948-d2d4a39bcea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8NzZ8fGdvbGRlbiUyMHJldHJpZXZlcnxlbnwxfDB8fHwxNzkzOTIzODE2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        "alt": "a dog sitting in the grass looking up at a person",
-        "photographer": "Faber Leonardo",
-        "photographerUrl": "https://unsplash.com/@faberleonardo?utm_source=puppies_affirmations&utm_medium=referral",
-        "photoUrl": "https://unsplash.com/photos/a-dog-sitting-in-the-grass-looking-up-at-a-person-hElXaurNvb0?utm_source=puppies_affirmations&utm_medium=referral"
-      },
-      "slug": "time-slows-down-when-noticing-the-soft-rise-and-fall-of-a"
-    },
-    {
-      "date": "2026-11-11",
-      "text": "Gentle paws remind us that home is found in quiet presence.",
-      "photo": {
-        "id": "WSAOGHKEqFc",
-        "src": "https://images.unsplash.com/photo-1556866261-8763a7662333?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8MTh8fGRvZ3xlbnwxfDB8fHwxNzkzOTIzODE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        "alt": "shallow focus photo of dogs on tree log",
-        "photographer": "Bruce Warrington",
-        "photographerUrl": "https://unsplash.com/@brucebmax?utm_source=puppies_affirmations&utm_medium=referral",
-        "photoUrl": "https://unsplash.com/photos/shallow-focus-photo-of-dogs-on-tree-log-WSAOGHKEqFc?utm_source=puppies_affirmations&utm_medium=referral"
-      },
-      "slug": "gentle-paws-remind-us-that-home-is-found-in-quiet-presence"
-    },
-    {
-      "date": "2026-11-12",
-      "text": "Peace settles in gently, like a sunbeam moving across the floor.",
-      "photo": {
-        "id": "Uc4qPiW2pLY",
-        "src": "https://images.unsplash.com/photo-1643260218499-ffb487553b6d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8MTB8fHB1cHBpZXMlMjBwbGF5aW5nfGVufDF8MHx8fDE3OTM5MjM4MTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-        "alt": "a small dog wearing a red shirt on a sidewalk",
-        "photographer": "Tapish",
-        "photographerUrl": "https://unsplash.com/@bytapish?utm_source=puppies_affirmations&utm_medium=referral",
-        "photoUrl": "https://unsplash.com/photos/a-small-dog-wearing-a-red-shirt-on-a-sidewalk-Uc4qPiW2pLY?utm_source=puppies_affirmations&utm_medium=referral"
-      },
-      "slug": "peace-settles-in-gently-like-a-sunbeam-moving-across-the"
-    },
     {
       "date": "2026-11-13",
       "text": "A contented sigh carries away the noise of the busy world.",
@@ -273,6 +169,300 @@
         "photoUrl": "https://unsplash.com/photos/brown-long-coated-small-dog-on-white-textile-44KS4XMYhbs?utm_source=puppies_affirmations&utm_medium=referral"
       },
       "slug": "soft-sighs-and-quiet-companionship-make-the-world-feel-safe"
+    },
+    {
+      "date": "2026-11-26",
+      "slug": "an-unhurried-lean-against-a-loyal-shoulder-anchors-the",
+      "text": "An unhurried lean against a loyal shoulder anchors the wandering mind.",
+      "reflection": "Weight shifts and settles without destination. The surrounding air feels remarkably patient as thoughts drift like loose clouds.",
+      "photo": {
+        "id": "cX-KEISwDIw",
+        "src": "https://images.unsplash.com/photo-1546975490-e8b92a360b24?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8Mzl8fGNvcmdpfGVufDF8MHx8fDE3OTUyMDExMDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "brown and white dog sitting under white hut",
+        "photographer": "Cole Keister",
+        "photographerUrl": "https://unsplash.com/@coleito?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/brown-and-white-dog-sitting-under-white-hut-cX-KEISwDIw?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-11-27",
+      "slug": "long-floppy-ears-frame-a-gaze-that-asks-for-nothing-at-all",
+      "text": "Long floppy ears frame a gaze that asks for nothing at all.",
+      "reflection": "Looking into steady, dark eyes creates a clear space in the middle of the day. Nothing needs fixing or explaining right here.",
+      "photo": {
+        "id": "rmxXOk2uAhA",
+        "src": "https://images.unsplash.com/photo-1514151458560-b9d0291a8676?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8NTV8fGdvbGRlbiUyMHJldHJpZXZlcnxlbnwxfDB8fHwxNzk1MjAxMTA4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "long-coated tan dog standing on brown leaves lot",
+        "photographer": "Jamie Street",
+        "photographerUrl": "https://unsplash.com/@jamie452?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/long-coated-tan-dog-standing-on-brown-leaves-lot-rmxXOk2uAhA?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-11-28",
+      "slug": "a-rhythmic-thumping-of-a-tail-speaks-a-language-of-pure",
+      "text": "A rhythmic thumping of a tail speaks a language of pure welcome.",
+      "reflection": "Joy arrives simply, without fanfare or complex reasons. The simple sound marks a small celebration of shared air.",
+      "photo": {
+        "id": "4_0wkzDL8fE",
+        "src": "https://images.unsplash.com/photo-1630283208569-20434a2dce4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8MjF8fHB1cHBpZXMlMjBwbGF5aW5nfGVufDF8MHx8fDE3OTUyMDExMTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "white and brown long coated small dog with blue leash on green grass field during daytime",
+        "photographer": "Bonnie Kittle",
+        "photographerUrl": "https://unsplash.com/@bonniekdesign?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/white-and-brown-long-coated-small-dog-with-blue-leash-on-green-grass-field-during-daytime-4_0wkzDL8fE?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-11-29",
+      "slug": "sandy-paws-leave-faint-traces-of-an-outdoor-afternoon-stroll",
+      "text": "Sandy paws leave faint traces of an outdoor afternoon stroll.",
+      "reflection": "The lingering scent of grass and open sky brings the outside world indoors. A quiet trail of dust tells a story of gentle exploration.",
+      "photo": {
+        "id": "avnxmAAlDek",
+        "src": "https://images.unsplash.com/photo-1640261169066-c9e7d8ed512b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8NjR8fGdvbGRlbiUyMHJldHJpZXZlcnxlbnwxfDB8fHwxNzk1MjAxMTA4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "a close up of a dog in a field",
+        "photographer": "Richard Laursen",
+        "photographerUrl": "https://unsplash.com/@richard1975?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/a-close-up-of-a-dog-in-a-field-avnxmAAlDek?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-11-30",
+      "slug": "curled-into-a-tight-fuzzy-circle-the-day-folds-inward",
+      "text": "Curled into a tight fuzzy circle, the day folds inward.",
+      "reflection": "Boundaries soften around a tucked-in nose and tucked-away tail. The room grows smaller and infinitely more cozy.",
+      "photo": {
+        "id": "VDrErQEF9e4",
+        "src": "https://images.unsplash.com/photo-1525253086316-d0c936c814f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8MTd8fHB1cHB5fGVufDF8MHx8fDE3OTUyMDExMDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "four assorted-color puppies on window",
+        "photographer": "Jametlene Reskp",
+        "photographerUrl": "https://unsplash.com/@reskp?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/four-assorted-color-puppies-on-window-VDrErQEF9e4?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-01",
+      "slug": "a-wet-nose-nudges-an-open-palm-in-silent-greeting",
+      "text": "A wet nose nudges an open palm in silent greeting.",
+      "reflection": "Communication happens beneath the level of spoken words. A cool touch reminds the skin of the present moment.",
+      "photo": {
+        "id": "uc3JhSWITMo",
+        "src": "https://images.unsplash.com/photo-1598894591353-9e7c935dd774?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8NjN8fHB1cHB5fGVufDF8MHx8fDE3OTUyMDExMDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "black white and brown short coated dog sitting on brown wooden floor",
+        "photographer": "Brandon Cormier",
+        "photographerUrl": "https://unsplash.com/@brandoncormier?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/black-white-and-brown-short-coated-dog-sitting-on-brown-wooden-floor-uc3JhSWITMo?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-02",
+      "slug": "soft-snoring-drifts-upward-like-a-lullaby-from-the-rug",
+      "text": "Soft snoring drifts upward like a lullaby from the rug.",
+      "reflection": "Rhythmic murmurs provide a steady background soundtrack to the afternoon. Even the furniture seems to lean into the gentle frequency.",
+      "photo": {
+        "id": "RU0s4s1kBL4",
+        "src": "https://images.unsplash.com/photo-1764660156230-2f3c28730e44?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8Mzh8fGNvcmdpfGVufDF8MHx8fDE3OTUyMDExMDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "Two happy corgis sitting on a chair",
+        "photographer": "Alvan Nee",
+        "photographerUrl": "https://unsplash.com/@alvannee?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/two-happy-corgis-sitting-on-a-chair-RU0s4s1kBL4?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-03",
+      "slug": "drooping-eyelids-meet-halfway-in-a-shared-unspoken",
+      "text": "Drooping eyelids meet halfway in a shared unspoken exhaustion.",
+      "reflection": "Heavy eyelids become contagious across species lines. The urge to stay awake slowly loses its gentle grip.",
+      "photo": {
+        "id": "tVg4QKX23Jo",
+        "src": "https://images.unsplash.com/photo-1630283294423-1eaa46a2c4a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8ODF8fHB1cHBpZXMlMjBwbGF5aW5nfGVufDF8MHx8fDE3OTUyMDExMTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "white and brown long coated small dog on green grass field",
+        "photographer": "Bonnie Kittle",
+        "photographerUrl": "https://unsplash.com/@bonniekdesign?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/white-and-brown-long-coated-small-dog-on-green-grass-field-tVg4QKX23Jo?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-04",
+      "slug": "a-golden-coat-catches-the-late-amber-glow-by-the-window",
+      "text": "A golden coat catches the late amber glow by the window glass.",
+      "reflection": "Light turns everything it touches into something tender. Shadows stretch long and lazy across the wooden floorboards.",
+      "photo": {
+        "id": "kg1l_nc6ABM",
+        "src": "https://images.unsplash.com/photo-1740083512818-7949c3d8b3bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8Nzl8fGhhcHB5JTIwZG9nfGVufDF8MHx8fDE3OTUyMDExMTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "A small gray dog standing on top of a lush green field",
+        "photographer": "Soulride Photography",
+        "photographerUrl": "https://unsplash.com/@soulride_photography?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/a-small-gray-dog-standing-on-top-of-a-lush-green-field-kg1l_nc6ABM?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-05",
+      "slug": "tangled-fur-tells-of-a-morning-spent-chasing-drifting",
+      "text": "Tangled fur tells of a morning spent chasing drifting dandelion seeds.",
+      "reflection": "A messy coat is proof of a day well-spent in the breeze. Untidy hair holds the memory of open fields.",
+      "photo": {
+        "id": "6bW6TUCkbfg",
+        "src": "https://images.unsplash.com/photo-1769117438403-4d22358c8132?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8ODB8fHB1cHBpZXMlMjBwbGF5aW5nfGVufDF8MHx8fDE3OTUyMDExMTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "A young boy and a golden retriever puppy sit together",
+        "photographer": "Helena Lopes",
+        "photographerUrl": "https://unsplash.com/@helenalopesph?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/a-young-boy-and-a-golden-retriever-puppy-sit-together-6bW6TUCkbfg?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-06",
+      "slug": "stretched-out-legs-reach-across-the-carpet-in-total-abandon",
+      "text": "Stretched-out legs reach across the carpet in total abandon.",
+      "reflection": "There is freedom in taking up space without hesitation. Every muscle uncoils in an effortless horizontal line.",
+      "photo": {
+        "id": "sICtHYZzt_s",
+        "src": "https://images.unsplash.com/photo-1519120430-a7d2287c986a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8NTN8fGRvZ3xlbnwxfDB8fHwxNzk1MjAxMTA3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "long-coat tan puppy",
+        "photographer": "Laula Co",
+        "photographerUrl": "https://unsplash.com/@laulaco?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/long-coat-tan-puppy-sICtHYZzt_s?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-07",
+      "slug": "a-twitching-snout-dreams-of-chasing-autumn-leaves-in-a",
+      "text": "A twitching snout dreams of chasing autumn leaves in a distant meadow.",
+      "reflection": "Closed eyes watch adventures play out behind velvet lids. The inner world turns lively and full of motion.",
+      "photo": {
+        "id": "3dQoXTAfK0E",
+        "src": "https://images.unsplash.com/photo-1672153919976-53c982c1154a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8Mjl8fHB1cHBpZXMlMjBwbGF5aW5nfGVufDF8MHx8fDE3OTUyMDExMTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "two dogs sitting on a beach next to the ocean",
+        "photographer": "Lesya Soboleva",
+        "photographerUrl": "https://unsplash.com/@lesyasoboleva?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/two-dogs-sitting-on-a-beach-next-to-the-ocean-3dQoXTAfK0E?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-08",
+      "slug": "velvet-ears-fold-back-in-an-expression-of-absolute-trust",
+      "text": "Velvet ears fold back in an expression of absolute trust.",
+      "reflection": "Vulnerability is met with the quiet safety of an enclosing room. The atmosphere holds a delicate, unbroken glass of calm.",
+      "photo": {
+        "id": "ua3Jr7g6KJA",
+        "src": "https://images.unsplash.com/photo-1596653048881-dc30d5b20b00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8MzF8fGhhcHB5JTIwZG9nfGVufDF8MHx8fDE3OTUyMDExMTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "white and brown long coated dog lying on green grass during daytime",
+        "photographer": "Honest Paws",
+        "photographerUrl": "https://unsplash.com/@honestpaws?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/white-and-brown-long-coated-dog-lying-on-green-grass-during-daytime-ua3Jr7g6KJA?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-09",
+      "slug": "a-warm-chin-rests-lightly-across-a-bare-slipper",
+      "text": "A warm chin rests lightly across a bare slipper.",
+      "reflection": "Contact bridges the small gap between two different lives. A heavy head brings a surprisingly light feeling to the toes.",
+      "photo": {
+        "id": "2l0CWTpcChI",
+        "src": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8M3x8ZG9nfGVufDF8MHx8fDE3OTUyMDExMDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "dog's face",
+        "photographer": "Milli",
+        "photographerUrl": "https://unsplash.com/@marliesestreefland?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/dogs-face-2l0CWTpcChI?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-10",
+      "slug": "scattered-toys-rest-untouched-as-afternoon-shadows-lengthen",
+      "text": "Scattered toys rest untouched as afternoon shadows lengthen.",
+      "reflection": "Playfulness gives way to contemplation without any sudden shift. The room takes on a museum-like hush of afternoon quiet.",
+      "photo": {
+        "id": "aAkGHwR5B0s",
+        "src": "https://images.unsplash.com/photo-1677758172752-ff1203eda261?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8NjR8fHB1cHBpZXMlMjBwbGF5aW5nfGVufDF8MHx8fDE3OTUyMDExMTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "a dog running with a tennis ball in its mouth",
+        "photographer": "Jan Gustavsson",
+        "photographerUrl": "https://unsplash.com/@ageror?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/a-dog-running-with-a-tennis-ball-in-its-mouth-aAkGHwR5B0s?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-11",
+      "slug": "fluffy-paws-tucked-neatly-underneath-resemble-a-resting",
+      "text": "Fluffy paws tucked neatly underneath resemble a resting cloud.",
+      "reflection": "Softness defines the edges of the room and the mood of the hour. Sharp corners vanish behind tufts of warm wool.",
+      "photo": {
+        "id": "k4vhuUHv08o",
+        "src": "https://images.unsplash.com/photo-1618359057154-e21ae64350b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8NXx8cHVwcHl8ZW58MXwwfHx8MTc5NTIwMTEwNnww&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "brown long coated small dog",
+        "photographer": "sq lim",
+        "photographerUrl": "https://unsplash.com/@sql?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/brown-long-coated-small-dog-k4vhuUHv08o?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-12",
+      "slug": "a-soft-exhale-fogs-the-cool-glass-of-the-backdoor-window",
+      "text": "A soft exhale fogs the cool glass of the backdoor window.",
+      "reflection": "Curiosity looks outward at the garden while staying entirely cozy inside. The outside world looks pleasant through a blurry circle.",
+      "photo": {
+        "id": "Fl5EtN4Z-i8",
+        "src": "https://images.unsplash.com/photo-1693615774599-ea266ebf51f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8NDh8fGdvbGRlbiUyMHJldHJpZXZlcnxlbnwxfDB8fHwxNzk1MjAxMTA4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "a close up of a dog looking at the camera",
+        "photographer": "Faber Leonardo",
+        "photographerUrl": "https://unsplash.com/@faberleonardo?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/a-close-up-of-a-dog-looking-at-the-camera-Fl5EtN4Z-i8?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-13",
+      "slug": "dappled-light-plays-across-a-speckled-back-under-the-shade",
+      "text": "Dappled light plays across a speckled back under the shade tree.",
+      "reflection": "Leaves overhead filter the brightness into gentle green patterns. Time moves only as fast as the crawling shade.",
+      "photo": {
+        "id": "4By2b2AQGaQ",
+        "src": "https://images.unsplash.com/photo-1645903569469-478dd88b0258?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8MTl8fHB1cHBpZXMlMjBwbGF5aW5nfGVufDF8MHx8fDE3OTUyMDExMTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "a couple of small dogs standing on top of a dirt field",
+        "photographer": "Satyabratasm",
+        "photographerUrl": "https://unsplash.com/@smpicturez?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/a-couple-of-small-dogs-standing-on-top-of-a-dirt-field-4By2b2AQGaQ?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-14",
+      "slug": "a-tilted-head-listens-intently-to-the-rustle-of-faraway-wind",
+      "text": "A tilted head listens intently to the rustle of faraway wind.",
+      "reflection": "Curiosity tilts the world at a slight, charming angle. Every rustle and whisper of the neighborhood becomes a song.",
+      "photo": {
+        "id": "lEe3-hTg4Vg",
+        "src": "https://images.unsplash.com/photo-1551887373-3c5bd224f6e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8Nzh8fHB1cHB5fGVufDF8MHx8fDE3OTUyMDExMDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "adult cream golden retriever laying on floor",
+        "photographer": "Stephen Andrews",
+        "photographerUrl": "https://unsplash.com/@porkbellysteve?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/adult-cream-golden-retriever-laying-on-floor-lEe3-hTg4Vg?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-15",
+      "slug": "ruffled-fur-settles-back-into-place-after-a-long-luxurious",
+      "text": "Ruffled fur settles back into place after a long, luxurious stretch.",
+      "reflection": "Back legs extend backward while front paws reach forward in a wave. The body resets itself into a brand new frame of ease.",
+      "photo": {
+        "id": "SQyHbKsdfPg",
+        "src": "https://images.unsplash.com/photo-1648495333000-32689c4ead62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8Nzl8fHB1cHB5fGVufDF8MHx8fDE3OTUyMDExMDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "a puppy is laying in the grass looking at the camera",
+        "photographer": "nygi",
+        "photographerUrl": "https://unsplash.com/@nyegi?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/a-puppy-is-laying-in-the-grass-looking-at-the-camera-SQyHbKsdfPg?utm_source=puppies_affirmations&utm_medium=referral"
+      }
+    },
+    {
+      "date": "2026-12-16",
+      "slug": "a-sleepy-blink-acknowledges-the-quiet-companionship-of-the",
+      "text": "A sleepy blink acknowledges the quiet companionship of the room.",
+      "reflection": "Eyelids flutter slowly like settling moth wings. A shared look confirms that everything is exactly as it should be.",
+      "photo": {
+        "id": "xhPqXKlqTGE",
+        "src": "https://images.unsplash.com/photo-1759530971495-2ad43605a938?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTIzOTIzfDB8MXxzZWFyY2h8NzR8fHB1cHBpZXMlMjBwbGF5aW5nfGVufDF8MHx8fDE3OTUyMDExMTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        "alt": "A cute puppy lying in green grass",
+        "photographer": "Laura Roberts",
+        "photographerUrl": "https://unsplash.com/@lroberts067?utm_source=puppies_affirmations&utm_medium=referral",
+        "photoUrl": "https://unsplash.com/photos/a-cute-puppy-lying-in-green-grass-xhPqXKlqTGE?utm_source=puppies_affirmations&utm_medium=referral"
+      }
     }
   ]
 }
