@@ -64,6 +64,9 @@ Each item has two parts:
 - "reflection": two or three short sentences, under 350 characters, that gently expand on the affirmation with a calm thought about the moment it describes. No advice and no instructions.
 Rules for both parts:
 - No medical, financial, political, or religious claims. Do not mention illness, death, weight, or diet.
+- This is not a requirement for every post, but try to randomly include any of the following concepts:
+  - The importance of perseverance
+  - The importance of quiet time to process things, accept reality, and analyze how to move forward
 - Every affirmation must differ in wording and idea from the others.
 - Do not repeat or closely resemble any of these affirmations: ${JSON.stringify(avoidList)}
 Return only a JSON array of ${count} objects with the keys "affirmation" and "reflection".`;
