@@ -68,6 +68,8 @@ Rules for both parts:
   - The importance of perseverance
   - The importance of quiet time to process things, accept reality, and analyze how to move forward
 - Every affirmation must differ in wording and idea from the others.
+- Ensure that paired affirmations and reflections relate to each other.
+- If they can include a dog pun or joke, do so
 - Do not repeat or closely resemble any of these affirmations: ${JSON.stringify(avoidList)}
 Return only a JSON array of ${count} objects with the keys "affirmation" and "reflection".`;
 
@@ -198,7 +200,7 @@ function photoRecord(photo) {
 
 function writeSummary(posts, usedFallback) {
   const lines = posts.map(
-    (p) => `${p.date}  ${p.text}\n    Photo: ${p.photo.photographer} (${p.photo.photoUrl})`,
+    (p) => `${p.date}  ${p.text}\n    Reflection: ${p?.reflection}\n    Photo: ${p.photo.photographer} (${p.photo.photoUrl})`,
   );
   if (usedFallback) {
     lines.unshift('Note: there were not enough fresh photos, so some older photos were reused.\n');
