@@ -6,6 +6,7 @@ export default function Hero({ affirmation, heroSrc, credit, reflection }) {
       <section className="pa-hero-text">
         <span className="pa-kicker">A little good news, every day</span>
         <h1 className="pa-headline">{affirmation}</h1>
+        {reflection && <p className="pa-reflection">{reflection}</p>}
       </section>
 
       <section className="pa-hero-frame">
@@ -13,7 +14,6 @@ export default function Hero({ affirmation, heroSrc, credit, reflection }) {
       </section>
 
       {credit && <PhotoCredit photo={credit} />}
-      {reflection && <p className="pa-reflection">{reflection}</p>}
     </>
   );
 }
