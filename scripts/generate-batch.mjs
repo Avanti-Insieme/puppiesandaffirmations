@@ -195,7 +195,7 @@ function photoRecord(photo) {
 
 function writeSummary(posts, usedFallback) {
   const lines = posts.map(
-    (p) => `${p.date}  ${p.text}\n    Photo: ${p.photo.photographer} (${p.photo.photoUrl})`,
+    (p) => `${p.date}  ${p.text}\n    Reflection: ${p?.reflection}\n    Photo: ${p.photo.photographer} (${p.photo.photoUrl})`,
   );
   if (usedFallback) {
     lines.unshift('Note: there were not enough fresh photos, so some older photos were reused.\n');
