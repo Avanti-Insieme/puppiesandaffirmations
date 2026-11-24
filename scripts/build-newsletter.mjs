@@ -28,7 +28,7 @@ function truncate(text, max) {
 }
 
 function buildFile(post) {
-  const { date, text, photo } = post;
+  const { date, text, photo, reflection } = post;
   const subject = truncate(text, 70);
   const preview = `Your affirmation and a good dog photo for ${prettyDate(date)}.`;
   const unsplash = 'https://unsplash.com/?utm_source=puppies_affirmations&utm_medium=referral';
@@ -41,6 +41,8 @@ preview: ${preview}
 ---
 
 # ${text}
+
+## ${reflection}
 
 ![${photo.alt}](${photo.src})
 
